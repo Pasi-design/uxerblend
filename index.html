@@ -449,6 +449,68 @@
   }
   @media (max-width:820px){ .services-grid{ grid-template-columns:1fr; } }
 
+  /* ============ BEFORE / AFTER ============ */
+  .compare-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:40px;
+    margin-bottom:52px;
+    flex-wrap:wrap;
+  }
+  .compare-head .section-head{ margin-bottom:0; }
+  .compare-note{
+    max-width:340px;
+    font-size:16px;
+    text-align:right;
+  }
+  .compare-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+    align-items:start;
+  }
+  .compare-card{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:var(--paper);
+    overflow:hidden;
+  }
+  .compare-card-head{
+    padding:26px 28px 22px;
+    border-bottom:1px solid var(--line);
+  }
+  .compare-card.is-after .compare-card-head{
+    background:linear-gradient(120deg, var(--orange), var(--amber) 130%);
+    border-bottom:none;
+  }
+  .compare-card-head h3{ font-size:19px; margin-bottom:6px; }
+  .compare-card.is-after .compare-card-head h3{ color:#fff; }
+  .compare-card-head span{ font-size:13.5px; color:var(--ink-soft); }
+  .compare-card.is-after .compare-card-head span{ color:rgba(255,255,255,.88); }
+
+  .compare-list{ list-style:none; margin:0; padding:8px 28px 12px; }
+  .compare-list li{
+    display:flex; align-items:flex-start; gap:14px;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+    font-size:15px; color:var(--ink-soft);
+  }
+  .compare-list li:last-child{ border-bottom:none; }
+  .compare-icon{
+    flex-shrink:0; width:28px; height:28px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    margin-top:1px;
+  }
+  .compare-card.is-before .compare-icon{ background:var(--ink); color:var(--paper); }
+  .compare-card.is-after .compare-icon{ background:color-mix(in srgb, var(--orange) 14%, transparent); color:var(--orange); border-radius:50%; }
+
+  @media (max-width:820px){
+    .compare-grid{ grid-template-columns:1fr; }
+    .compare-head{ align-items:flex-start; }
+    .compare-note{ text-align:left; max-width:none; }
+  }
+
   /* ============ PROCESS ============ */
   .process{ background:var(--ink); color:var(--paper); }
   .process .section-head h2{ color:var(--paper); }
@@ -489,6 +551,10 @@
     .step{ padding-left:28px; padding-right:0; }
     .step .dot{ margin-bottom:14px; }
   }
+
+  /* ============ TEMP HIDDEN SECTIONS ============ */
+  /* Sections/links kept in the markup but hidden from view for now — remove this class to bring them back. */
+  .section-hidden{ display:none !important; }
 
   /* ============ WORK ============ */
   .work-grid{
@@ -606,6 +672,79 @@
     .t-viewport{ min-height:260px; }
   }
 
+  /* ============ PRICING ============ */
+  .pricing-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+    align-items:stretch;
+  }
+  .price-card{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:34px 30px 30px;
+    transition: transform var(--dur-m) var(--ease), box-shadow var(--dur-m) var(--ease), border-color var(--dur-m) var(--ease);
+  }
+  .price-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 26px 46px -22px rgba(20,20,20,.22);
+  }
+  .price-card.featured{
+    border-color:var(--ink);
+    box-shadow:0 30px 54px -22px rgba(20,20,20,.24);
+  }
+  @media (min-width:881px){
+    .price-card.featured{ transform:translateY(-14px); }
+    .price-card.featured:hover{ transform:translateY(-20px); }
+  }
+  .price-badge{
+    position:absolute; top:-13px; left:30px;
+    background:var(--orange); color:#1c0d02;
+    font-family:'JetBrains Mono'; font-size:11px; font-weight:600;
+    letter-spacing:.04em; text-transform:uppercase;
+    padding:6px 12px; border-radius:999px;
+  }
+  .price-card .plan-icon{
+    width:38px; height:38px; border-radius:10px;
+    background:color-mix(in srgb, var(--accent, var(--teal)) 14%, transparent);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--accent, var(--teal));
+    margin-bottom:20px;
+  }
+  .price-card h3{ font-size:21px; margin-bottom:8px; }
+  .price-card .plan-desc{ font-size:14.5px; min-height:42px; }
+  .price-row{ display:flex; align-items:baseline; flex-wrap:wrap; gap:8px; margin-top:22px; }
+  .price-amount{ font-family:'Space Grotesk'; font-weight:700; font-size:clamp(24px,2.3vw,30px); color:var(--ink); line-height:1.15; }
+  .price-unit{ font-size:13px; color:var(--ink-soft); }
+  .price-unit-standalone{ display:block; margin-top:6px; font-size:12.5px; }
+  .price-card hr{ border:none; border-top:1px solid var(--line); margin:24px 0; }
+  .plan-features{ list-style:none; margin:0 0 28px; padding:0; display:flex; flex-direction:column; gap:13px; flex:1; }
+  .plan-features li{
+    display:flex; align-items:flex-start; gap:10px;
+    font-size:14.5px; color:var(--ink-soft);
+  }
+  .plan-features li svg{ flex-shrink:0; margin-top:2px; color:var(--accent, var(--teal)); }
+  .price-card .btn{ width:100%; justify-content:center; }
+  .price-card .tags{ display:flex; gap:7px; flex-wrap:wrap; margin-top:16px; }
+  .price-card .tags span{
+    font-size:11.5px; font-family:'JetBrains Mono'; padding:4px 9px;
+    border:1px solid var(--line-strong); border-radius:999px; color:var(--ink-soft);
+  }
+  .price-card .tools-note{ font-size:13px; margin-top:14px; margin-bottom:2px; }
+  .pricing-note{
+    text-align:center; margin-top:36px; font-size:13.5px; color:var(--ink-soft);
+  }
+
+  @media (max-width:880px){
+    .pricing-grid{ grid-template-columns:1fr; }
+    .price-card.featured{ transform:none; }
+    .price-card.featured:hover{ transform:translateY(-6px); }
+  }
+
   /* ============ CTA BAND ============ */
   .cta-band{
     background:var(--ink); color:var(--paper);
@@ -664,7 +803,8 @@
       <div class="nav-links">
         <a href="#services">Services</a>
         <a href="#process">Process</a>
-        <a href="#work">Work</a>
+        <a href="#work" class="section-hidden">Work</a>
+        <a href="#pricing">Pricing</a>
         <a href="#contact">Contact</a>
       </div>
       <div class="nav-cta">
@@ -693,7 +833,7 @@
         <p class="lede reveal in-view">UXerBlend is a small studio that designs and builds digital products end to end — from the first sketch of a flow to the last line of shipped code.</p>
         <div class="hero-ctas reveal in-view">
           <a href="#contact" class="btn btn-primary">Start a project <span class="btn-arrow">→</span></a>
-          <a href="#work" class="btn btn-ghost">See our work</a>
+          <a href="#services" class="btn btn-ghost">See our services</a>
         </div>
         <div class="hero-meta reveal in-view">
           <div><strong>Design + build</strong><span>One team, start to finish</span></div>
@@ -791,6 +931,82 @@
     </div>
   </section>
 
+  <!-- ============ BEFORE / AFTER ============ -->
+  <section class="section" id="compare">
+    <div class="wrap">
+      <div class="compare-head">
+        <div class="section-head reveal">
+          <div class="eyebrow mono">
+            <svg class="x-mark" viewBox="0 0 24 24" width="14" height="14"><path d="M4 4L20 20M20 4L4 20" stroke="currentColor" stroke-width="3" fill="none"/></svg>
+            Before &amp; after
+          </div>
+          <h2>Sound familiar?</h2>
+        </div>
+        <p class="compare-note reveal">If any of this sounds familiar, you're exactly who UXerBlend is built for.</p>
+      </div>
+
+      <div class="compare-grid">
+        <div class="compare-card is-before reveal" style="--i:0">
+          <div class="compare-card-head">
+            <h3>Before working with us</h3>
+            <span>Freelancers, handoffs, and chasing updates</span>
+          </div>
+          <ul class="compare-list">
+            <li>
+              <span class="compare-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3L2 20h20L12 3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+              Bouncing between freelance designers and developers who don't talk to each other
+            </li>
+            <li>
+              <span class="compare-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3L2 20h20L12 3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+              Design files that don't quite match what actually ships in code
+            </li>
+            <li>
+              <span class="compare-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3L2 20h20L12 3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+              Launches delayed because development wasn't ready when design was
+            </li>
+            <li>
+              <span class="compare-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3L2 20h20L12 3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+              Re-briefing someone new every time the scope changes
+            </li>
+            <li>
+              <span class="compare-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 3L2 20h20L12 3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+              Multiple vendors, unclear scope, and surprise invoices
+            </li>
+          </ul>
+        </div>
+
+        <div class="compare-card is-after reveal" style="--i:1">
+          <div class="compare-card-head">
+            <h3>After working with us</h3>
+            <span>Design and development, handled as one</span>
+          </div>
+          <ul class="compare-list">
+            <li>
+              <span class="compare-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              One designer and developer who own the brief, design, and build
+            </li>
+            <li>
+              <span class="compare-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              Every screen matches your brand and design system, pixel for pixel in code
+            </li>
+            <li>
+              <span class="compare-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              Design and development run in parallel, so nothing sits waiting
+            </li>
+            <li>
+              <span class="compare-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              The same team, project after project — no re-briefing required
+            </li>
+            <li>
+              <span class="compare-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              One scope, one quote, one point of contact from start to finish
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ PROCESS ============ -->
   <section class="section process" id="process">
     <div class="wrap">
@@ -835,7 +1051,7 @@
   </section>
 
   <!-- ============ WORK ============ -->
-  <section class="section" id="work">
+  <section class="section section-hidden" id="work">
     <div class="wrap">
       <div class="section-head reveal">
         <div class="eyebrow mono">
@@ -935,7 +1151,7 @@
   </section>
 
   <!-- ============ TESTIMONIAL CAROUSEL ============ -->
-  <section class="section testimonial">
+  <section class="section testimonial section-hidden">
     <div class="wrap">
       <div class="testimonial-carousel reveal" id="testimonialCarousel" role="region" aria-roledescription="carousel" aria-label="Client testimonials">
         <svg class="x-mark" viewBox="0 0 24 24" width="22" height="22"><path d="M4 4L20 20M20 4L4 20" stroke="currentColor" stroke-width="2.5" fill="none"/></svg>
@@ -977,6 +1193,94 @@
     </div>
   </section>
 
+  <!-- ============ PRICING ============ -->
+  <section class="section" id="pricing">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow mono">
+          <svg class="x-mark" viewBox="0 0 24 24" width="14" height="14"><path d="M4 4L20 20M20 4L4 20" stroke="currentColor" stroke-width="3" fill="none"/></svg>
+          Pricing
+        </div>
+        <h2>Simple packages, clear scope</h2>
+        <p>Typical ranges for common project types. Every project kicks off with a short call to confirm scope before anything is finalized.</p>
+      </div>
+
+      <div class="pricing-grid">
+
+        <div class="price-card reveal" style="--accent:var(--teal); --i:0">
+          <div class="plan-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M11 4a7 7 0 1 0 4.9 12l4.1 4M11 8v6M8 11h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Starter</h3>
+          <p class="plan-desc">Landing Page</p>
+          <div class="price-row">
+            <span class="price-amount">$300–600</span>
+          </div>
+          <span class="price-unit price-unit-standalone">Example project cost</span>
+          <hr>
+          <ul class="plan-features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>UX structure</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Figma design</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Responsive design</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Development</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost">Get started</a>
+        </div>
+
+        <div class="price-card featured reveal" style="--accent:var(--orange); --i:1">
+          <span class="price-badge">Most popular</span>
+          <div class="plan-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 19V9M12 19V4M20 19v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Growth</h3>
+          <p class="plan-desc">Business Website</p>
+          <div class="price-row">
+            <span class="price-amount">$800–1,500</span>
+          </div>
+          <span class="price-unit price-unit-standalone">Example project cost</span>
+          <hr>
+          <ul class="plan-features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>5–7 pages</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>UX strategy</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>UI design</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Responsive</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Development</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Get started</a>
+        </div>
+
+        <div class="price-card reveal" style="--accent:var(--terracotta); --i:2">
+          <div class="plan-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 5l-2 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Conversion</h3>
+          <p class="plan-desc">Website UX + Conversion Redesign</p>
+          <div class="price-row">
+            <span class="price-amount">$1,500–3,000+</span>
+          </div>
+          <span class="price-unit price-unit-standalone">Example project cost</span>
+          <div class="tags">
+            <span>WordPress</span><span>Framer</span><span>Webflow</span><span>Custom</span>
+          </div>
+          <p class="tools-note">Platform is chosen together once we've reviewed your project.</p>
+          <hr>
+          <ul class="plan-features">
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>UX audit</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Competitor research</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Wireframes</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>UI redesign</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Conversion improvements</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Development</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost">Talk to us</a>
+        </div>
+
+      </div>
+
+      <p class="pricing-note reveal">These are example ranges — final pricing depends on scope, content, and complexity, confirmed after a quick discovery call.</p>
+    </div>
+  </section>
+
   <!-- ============ CTA BAND ============ -->
   <section class="section" id="contact" style="padding-top:40px;">
     <div class="cta-band reveal">
@@ -1005,7 +1309,8 @@
           <h4>Studio</h4>
           <a href="#services">Services</a>
           <a href="#process">Process</a>
-          <a href="#work">Work</a>
+          <a href="#work" class="section-hidden">Work</a>
+          <a href="#pricing">Pricing</a>
         </div>
         <div class="footer-col">
           <h4>Contact</h4>
