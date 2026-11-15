@@ -1526,7 +1526,8 @@
     function goTo(i){
       const idx = Math.max(0, Math.min(cards.length - 1, i));
       isSettling = true;
-      cards[idx].scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'start' });
+      // Scroll only the track horizontally (scrollIntoView would also scroll the whole page)
+      track.scrollTo({ left: cards[idx].offsetLeft - cards[0].offsetLeft, behavior: reduceMotion ? 'auto' : 'smooth' });
       setActiveDot(idx);
       clearTimeout(goTo._settle);
       goTo._settle = setTimeout(() => { isSettling = false; }, 500);
@@ -1534,10 +1535,17 @@
     const next = () => goTo((current + 1) % cards.length);
     const prev = () => goTo((current - 1 + cards.length) % cards.length);
 
+    let inView = false;
     function restart(){
       clearInterval(timer);
-      if (!reduceMotion) timer = setInterval(next, 7000);
+      if (!reduceMotion && inView) timer = setInterval(next, 7000);
     }
+
+    // Only autoplay while the carousel is actually visible on screen
+    new IntersectionObserver((entries) => {
+      inView = entries[0].isIntersecting;
+      restart();
+    }, { threshold: 0.4 }).observe(root);
 
     nextBtn.addEventListener('click', () => { next(); restart(); });
     prevBtn.addEventListener('click', () => { prev(); restart(); });
@@ -1561,8 +1569,6 @@
       }, 120);
     }, { passive:true });
     track.addEventListener('scroll', () => { clearTimeout(restart._t); restart._t = setTimeout(restart, 1200); }, { passive:true });
-
-    restart();
   })();
 
   // Process line fill on scroll into view
